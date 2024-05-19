@@ -2,7 +2,7 @@
 
 ## Overview
 
-Using data for birds local to Arizona, image classification and NLP will be performed using locally run LLMs.  Using scraped species information and images from eBird.com, LLMs run on the host machine will be used to classify both images and text queries.  Due to the narrower scope and amount of data, SLMs will also be explored.  Again, the narrow use case of this project and goal of being run locally makes this a good test for Retrieval Augmented Generation (RAG).
+Using data on birds local to Arizona, image classification and NLP will be performed using locally run LLMs.  Using scraped species information and images from eBird.com, LLMs run on the host machine will be used to classify both images and text queries.  Due to the narrower scope and amount of data, SLMs will also be explored.  Again, the narrow use case of this project and goal of being run locally makes this a good test for Retrieval Augmented Generation (RAG).
 
 Using the Selenium web driver, ~1,000 images for roughly 111 different birds native to Arizona will be scraped from the Cornell Lab Macaulay library yielding a training dataset of over 100,000 images.  The scraped images have varying resolutions and will be padded to a standard 480x480 square.  A vision transformer (ViT) will be used to classify each of the 111 classes.  While convolutional neural networks (CNN) are the usual choice in image classification, this serves as an exploration of the broad use cases of transformer models.  Vision transformers are known to be both data-hungry and computationally expensive.  Fine-tuning will be needed to increase accuracy, but this approach may not yield the most accurate classification.  Again, this is just a proof of concept for a small locally run case.
 

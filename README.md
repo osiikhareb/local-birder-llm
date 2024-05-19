@@ -1,6 +1,6 @@
 # Local Birder LLM
 
-## Description
+## Overview
 
 Using data for birds local to Arizona, image classification and NLP will be performed using locally run LLMs.  Using scraped species information and images from eBird.com, LLMs run on the host machine will be used to classify both images and text queries.  Due to the narrower scope and amount of data, SLMs will also be explored.
 

@@ -1,4 +1,4 @@
-# Local Birder LLM
+# Local Birder LLM/SLM
 
 ## Overview
 
@@ -9,3 +9,16 @@ Using the Selenium web driver, ~1,000 images for roughly 111 different birds nat
 Along with images, taxonomic information and species descriptions for each class will be scraped for all 111 classes.  This information will serve as the basis for a small dataset that can be utilized by a retrieval augmented generation (RAG) architecture. A prompt will be entered, e.g. "What bird is light brown with stripes on its back and a red patch on its head".  The results from the RAG using the stored data should produce the result "Gila Woodpecker".  If the species information data is insufficient, additional information will be scraped from Wikipedia or the detailed description page on eBird.
 
 The overall goal is an exploration of locally obtained data run on local LLMs/SLMs for a specific use case without the need for APIs.  Datasets such as the Caltech-UCSD Birds-200-2011 (CUB-200-2011) exist, but have fewer images per class and aren't specific to Arizona though there is some overlap!  High accuracy has been achieved on the smaller CalTech dataset (11,788 images) using few-shot learning. Given that there aren't millions of training images, that approach may be explored later with a truncated dataset.      
+
+## Roadmap
+
+- [ ] Use Selenium to scrape species images and species descriptions
+- [ ] Build vision transformer in Keras
+  - [ ] Train model on image training set
+- [ ] Fine-tune model
+- [ ] Build RAG Architecture
+  - [ ] Create a small vector database from species descriptions
+  - [ ] Deploy local LLM (Ollama most likely)
+  - [ ] Train model on database
+- [ ] Test with queries and fine-tune model
+- [ ] TBD

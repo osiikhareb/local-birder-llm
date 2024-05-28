@@ -16,7 +16,7 @@ import tensorflow as tf
 
 
 
-speciesCode_list ='A:/Documents/Python Scripts/BirdBot3.0/Scraper/_output/species_info_111.csv'
+speciesCode_list ='A:/Documents/Python Scripts/BirdBot3.0/species_info_111.csv'
 speciesCodelist = pd.read_csv(speciesCode_list)
 speciesCodelist = speciesCodelist['speciesCode']
 

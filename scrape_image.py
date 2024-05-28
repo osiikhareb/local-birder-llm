@@ -32,7 +32,7 @@ No bots are allowed to touch this directory /wp-admin/ everything else is fair g
 
     
 # list of species codes, point to stored location and take slice of column
-speciesCode_list ='A:/Documents/Python Scripts/BirdBot3.0/Scraper/files/species_info_111.csv'
+speciesCode_list ='A:/Documents/Python Scripts/BirdBot3.0/species_info_111.csv'
 speciesCodelist = pd.read_csv(speciesCode_list)
 speciesCodelist = speciesCodelist['speciesCode']
 
@@ -41,7 +41,7 @@ def ImgScrapeDir():
     # Creating a directory to save images
     for x in speciesCodelist:
         folder_name = x
-        path = 'A:\Documents\Python Scripts\BirdBot3.0\Scraper\_images'
+        path = 'A:\Documents\Python Scripts\BirdBot3.0\raw_img_data\raw'
         os.chdir(path)
         if not os.path.isdir(folder_name):
             os.makedirs(folder_name)
@@ -58,7 +58,7 @@ def download_image(url, folder_name, num):
     
     # Creating a webdriver instance
     #driver = webdriver.Chrome()
-    driver = webdriver.Firefox()
+    driver = webdriver.Firefox(executable_path=r'A:\Documents\Python Scripts\BirdBot3.0\geckodriver.exe')
     driver.maximize_window()
     
     # Macaulay link where images will be scraped; we can potentially add tags for labeled photos 

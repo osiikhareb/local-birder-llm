@@ -22,20 +22,20 @@ import cv2 as cv
 import matplotlib.pyplot as plt
 
 
-#path = 'A:/Documents/Python Scripts/BirdBot2.0/Scraper/images'
+#path = 'A:/Documents/Python Scripts/BirdBot3.0/images'
 #os.chdir(path)
 
 ## Load all images as dataset
 
 # Get species code list for looping
-speciesCode_list ='A:/Documents/Python Scripts/BirdBot2.0/Scraper/_output/species_info_111.csv'
+speciesCode_list ='A:/Documents/Python Scripts/BirdBot3.0/species_info_111.csv'
 speciesCodelist = pd.read_csv(speciesCode_list)
 speciesCodelist = speciesCodelist['speciesCode']
 
 # Create new folders for preprocessed images
 for x in speciesCodelist:
     folder_name = x
-    path = 'A:\Documents\Python Scripts\BirdBot2.0\Preprocessing\_images'
+    path = 'A:\Documents\Python Scripts\BirdBot3.0\raw_img_data\preprocessed'
     os.chdir(path)
     if not os.path.isdir(folder_name):
         os.makedirs(folder_name)
@@ -45,7 +45,7 @@ imgdata = []
 for i in speciesCodelist:    
     for j in range(1, 330):
         try:
-            folder = f'A:/Documents/Python Scripts/BirdBot2.0/Scraper/_images/{i}'
+            folder = f'A:/Documents/Python Scripts/BirdBot3.0/raw_img_data/preprocessed/{i}'
             os.chdir(folder)
             
             img = cv.imread(f'{i}_{j}.jpg') 
@@ -67,7 +67,7 @@ for i in speciesCodelist:
            break 
 
 imgdata_df = pd.DataFrame(imgdata, columns=['speciesCode', 'width', 'height', 'megapixels', 'aspect ratio'])    
-imgdata_df.to_csv('A:/Documents/Python Scripts/BirdBot2.0/Preprocessing/_output/species_info.csv')
+imgdata_df.to_csv('A:/Documents/Python Scripts/BirdBot3.0/Preprocessing/_output/species_info.csv')
     
 # width, height, resolution, and aspect ratio distributions
 plt.hist(imgdata_df['width'])
@@ -103,11 +103,11 @@ def add_margin(pil_img, top, right, bottom, left, color):
 # Loop through all images and resize to average dimensions or zero pad, store in new folder
 for i in speciesCodelist:
     
-    folder = f'A:/Documents/Python Scripts/BirdBot2.0/Scraper/_images/{i}'
+    folder = f'A:/Documents/Python Scripts/BirdBot3.0/raw_img_data/raw/{i}'
     file_count = sum(len(files) for _, _, files in os.walk(folder)) + 1
     #file_count = sum(1 for _, _, files in os.walk(folder) for f in files) + 1
     
-    dest = f'A:/Documents/Python Scripts/BirdBot2.0/Preprocessing/_images/{i}'
+    dest = f'A:/Documents/Python Scripts/BirdBot3.0/raw_img_data/preprocessed/{i}'
     dest_file_count = sum(len(files) for _, _, files in os.walk(dest))
     
     if dest_file_count == 0:
@@ -120,7 +120,7 @@ for i in speciesCodelist:
         try:
             
             # Zero pad image to 480 x 480 square
-            img = Image.open(f'A:/Documents/Python Scripts/BirdBot2.0/Scraper/_images/{i}/{i}_{j}.jpg')            
+            img = Image.open(f'A:/Documents/Python Scripts/BirdBot3.0/raw_img_data/preprocessed/{i}/{i}_{j}.jpg')            
             size = img.size
             maxpad = (480,480)
             
@@ -150,7 +150,7 @@ for i in speciesCodelist:
             #pad
             img_new = add_margin(img, top, right, bottom, left, (128, 0, 64))
             img_new = img_new.convert('RGB')
-            img_new.save(f'A:/Documents/Python Scripts/BirdBot2.0/Preprocessing/_images/{i}/{i}_{j}_pad.jpg', quality=100)
+            img_new.save(f'A:/Documents/Python Scripts/BirdBot3.0/raw_img_data/preprocessed/{i}/{i}_{j}_pad.jpg', quality=100)
             #img_new.show()            
             
         except FileNotFoundError:  #if file not found go to next iteration

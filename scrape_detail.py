@@ -194,6 +194,6 @@ print(f"Scrape detail took {minutes} minutes to complete")
     #create species_info_df2 then append results to existing df
 #else do this:
 species_info_df = pd.DataFrame(species_info, columns=['query', 'speciesCode', 'comName', 'sciName', 'order', 'family', 'genus', 'species', 'description'])    
-species_info_df.to_csv('A:/Documents/Python Scripts/BirdBot3.0/Scraper/files/species_info.csv')
+species_info_df.to_csv('A:/Documents/Python Scripts/BirdBot3.0/species_info.csv')
 
 #return

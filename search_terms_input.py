@@ -33,7 +33,7 @@ def user_wants_to_continue():
         print("Invalid input. Please enter 'yes' or 'no'.")
 
 def main():
-    filepath = 'A:/Documents/Python Scripts/BirdBot3.0/searchTerms.csv'
+    filepath = 'A:/Documents/Python Scripts/BirdBot3.0/search_terms.csv'
     
     if not csv_exists(filepath):
         with open(filepath, mode='w', newline='') as file:

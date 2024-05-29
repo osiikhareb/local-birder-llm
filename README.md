@@ -13,8 +13,8 @@ The overall goal is an exploration of locally obtained data run on local LLMs/SL
 ## Roadmap
 
 - [ ] Use Selenium to scrape species images and species descriptions
-- [ ] Build vision transformer in Keras
-- [ ] Build other Models in Keras
+- [ ] Build vision transformer in PyTorch
+- [ ] Build other Models in PyTorch
 - [ ] Train on image dataset and compare the performance of each
 - [ ] Select the best model and Fine-tune
 - [ ] Build RAG Architecture

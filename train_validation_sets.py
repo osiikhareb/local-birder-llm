@@ -2,6 +2,7 @@
 """
 Train and validation image dataset/folder creation.
 Images will be randomly shuffled and copied to the new directory
+An optional data augmentation step at the end can be run to improve model generalization
 
 @author: Osi
 """
@@ -12,7 +13,9 @@ import shutil
 import random
 import numpy as np
 import pandas as pd
-import tensorflow as tf
+import torch
+from torchvision import datasets, transforms
+from torch.utils.data import DataLoader
 
 
 
@@ -120,28 +123,36 @@ for n in speciesCodelist:
 # Set the path to the dataset directory
 dataset_dir = 'A:/Documents/Python Scripts/BirdBot3.0/Preprocessing/dataset'
 
+# Define transformations for the training and validation sets
+transform = transforms.Compose([
+    transforms.Resize((480, 480)),  # Resize images to 480x480 - We can resize this to a smaller resolution if needed
+    transforms.ToTensor(),  # Convert images to PyTorch tensors
+    transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])  # Normalize to ImageNet standards
+])
+
 # Create the training dataset
-train_dataset = tf.keras.preprocessing.image_dataset_from_directory(
-    directory=dataset_dir + '/train',
-    labels='inferred', # Automatically infer the class labels from the directory structure
-    label_mode='int', # Integer labels
-    image_size=(480, 480), # Resize images to 480x480
-    batch_size=32, # Number of images per batch
-    shuffle=True, # Shuffle the dataset
-    seed=123 # Seed for reproducibility
-)
+train_dataset = datasets.ImageFolder(root=dataset_dir + '/train', transform=transform)
 
 # Create the validation dataset
-validation_dataset = tf.keras.preprocessing.image_dataset_from_directory(
-    directory=dataset_dir + '/validation',
-    labels='inferred',
-    label_mode='int',
-    image_size=(480, 480),
-    batch_size=32,
-    shuffle=True,
-    seed=123
-)
+validation_dataset = datasets.ImageFolder(root=dataset_dir + '/validation', transform=transform)
+
+# Create data loaders
+train_loader = DataLoader(train_dataset, batch_size=32, shuffle=True)
+validation_loader = DataLoader(validation_dataset, batch_size=32, shuffle=False)
 
 # Print the class names
-class_names = train_dataset.class_names
+class_names = train_dataset.classes
 print("Class names:", class_names)
+
+
+# Optionally augment the data to create additional images to improve model generalization 
+train_transform = transforms.Compose([
+    transforms.Resize((480, 480)),
+    transforms.RandomHorizontalFlip(),  # Randomly flip images horizontally
+    transforms.RandomRotation(10),  # Randomly rotate images by 10 degrees
+    transforms.ToTensor(),
+    transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
+])
+
+train_dataset = datasets.ImageFolder(root=dataset_dir + '/train', transform=train_transform)
+train_loader = DataLoader(train_dataset, batch_size=32, shuffle=True)

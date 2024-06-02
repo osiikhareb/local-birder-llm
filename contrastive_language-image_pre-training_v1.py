@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-Contrastive Language Image Pretraining (CLIP)
-Implemented using OpenAI pretrained model 
+Contrastive Language Image Pre-training (CLIP)
+Implemented using OpenAI pre-trained model 
 
 @author: Osi
 """

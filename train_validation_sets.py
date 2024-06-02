@@ -119,13 +119,13 @@ for n in speciesCodelist:
             break
 
 
-
+'''
 # Set the path to the dataset directory
 dataset_dir = 'A:/Documents/Python Scripts/BirdBot3.0/Preprocessing/dataset'
 
 # Define transformations for the training and validation sets
 transform = transforms.Compose([
-    transforms.Resize((480, 480)),  # Resize images to 480x480 - We can resize this to a smaller resolution if needed
+    transforms.Resize((224, 224)),  # Resize images to 224x224 to avoid model issues for now - We can keep this at 480x480 later
     transforms.ToTensor(),  # Convert images to PyTorch tensors
     transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])  # Normalize to ImageNet standards
 ])
@@ -147,7 +147,7 @@ print("Class names:", class_names)
 
 # Optionally augment the data to create additional images to improve model generalization 
 train_transform = transforms.Compose([
-    transforms.Resize((480, 480)),
+    transforms.Resize((224, 224)),
     transforms.RandomHorizontalFlip(),  # Randomly flip images horizontally
     transforms.RandomRotation(10),  # Randomly rotate images by 10 degrees
     transforms.ToTensor(),
@@ -156,3 +156,4 @@ train_transform = transforms.Compose([
 
 train_dataset = datasets.ImageFolder(root=dataset_dir + '/train', transform=train_transform)
 train_loader = DataLoader(train_dataset, batch_size=32, shuffle=True)
+'''

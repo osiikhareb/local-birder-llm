@@ -12,18 +12,19 @@ The overall goal is an exploration of locally obtained data run on local LLMs/SL
 
 ## Roadmap
 
-- [ ] Use Selenium to scrape species images and species descriptions
-- [ ] Build vision transformer in PyTorch
-- [ ] Build other models (CLIP, ResNet, & EfficientNet) in PyTorch
-- [ ] Train on image dataset and compare the performance of each
+- [X] Use Selenium to scrape species images and species descriptions
+- [X] Build vision transformer in PyTorch
+- [X] Build other models (CLIP, ResNet, & EfficientNet) in PyTorch
+- [X] Train on the image dataset and compare the performance of each
 - [ ] Select the best model and Fine-tune
-- [ ] Build RAG Architecture
-  - [ ] Create a small vector database from species descriptions
+- [X] Build RAG Architecture
+  - [X] Create a small vector database from species descriptions
   - [ ] Add additional knowledge libraries
     - [ ] Use Selenium to scrape Wikipedia and eBird (again)
-  - [ ] Deploy local LLM (Ollama most likely)
-  - [ ] Train model on database
+  - [X] Deploy local LLM (Ollama most likely)
+  - [X] Train model on database
   - [ ] Retrain on SLM
-- [ ] Test with queries and fine-tune model
-- [ ] LangChain to make it all work together?
-- [ ] TBD
+- [X] Test with queries and fine-tune model
+- [X] LangChain to create multi-modal image and text classification
+- [ ] Clean up programs and create classes to simplify running programs
+- [ ] YOLOv8 on videos eventually

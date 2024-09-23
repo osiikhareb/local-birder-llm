@@ -28,4 +28,4 @@ The overall goal is an exploration of locally obtained data run on local LLMs/SL
 - [ ] Test with few-shot learning approach
 - [X] LangChain to create multi-modal image and text classification
 - [ ] Clean up programs and create classes to simplify running programs
-- [ ] YOLOv8 for real-time object detection, tracking, and classification
+- [ ] *YOLOv8 for real-time object detection, tracking, and classification
